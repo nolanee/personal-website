@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "semantic-ui-css/semantic.min.css";
+import Home from './Home'
+import Page from './Page';
+import TopMenu from './TopMenu';
+import Front from './Front'
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content : <Front/>
+    }
+  }
+
+  handleClick (type) {
+    if (type === "Home") {
+      this.setState({content : <Home/>});
+    } else {
+      this.setState({content : <Front/>});
+    }
+  }
+
+  render () {
+    return (
+      <div>
+      <TopMenu onClickFront={() => {this.handleClick("Front")}} 
+      onClickHome={() => {this.handleClick("Home")}}/>
+      <Page>
+        {this.state.content}
+      </Page>
+      </div>
+    )
+  };
 }
 
 export default App;
