@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react';
 import logo from './images/android-chrome-512x512.png'
 
-function Page(props) {
+function WebPage(props) {
     return (
       <div>
       <Container text style={{ marginTop: '15vh'}}>
@@ -37,4 +37,4 @@ function Page(props) {
     );
   }
   
-  export default Page;
+  export default WebPage;

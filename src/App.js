@@ -1,35 +1,34 @@
 import "semantic-ui-css/semantic.min.css";
-import Home from './Home'
-import Page from './Page';
+import CV from './CV'
 import TopMenu from './TopMenu';
-import Front from './Front'
+import Home from './Home'
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      content : <Front/>
-    }
-  }
-
-  handleClick (type) {
-    if (type === "Home") {
-      this.setState({content : <Home/>});
-    } else {
-      this.setState({content : <Front/>});
-    }
-  }
 
   render () {
     return (
+      <Router>
       <div>
-      <TopMenu onClickFront={() => {this.handleClick("Front")}} 
-      onClickHome={() => {this.handleClick("Home")}}/>
-      <Page>
-        {this.state.content}
-      </Page>
+        <TopMenu/>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/CV">
+            <CV/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
       </div>
+      </Router>
     )
   };
 }
